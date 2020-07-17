@@ -88,7 +88,7 @@ def select_move_minimax(board, color):
     if score>bestMoveScore:
       bestMoveScore=score
       bestMove=i
-  print("Hah! You'll never defend a")
+  print("Hah! You'll never defend against my SOOPAHMOVES!")
   return bestMove
     
 ############ ALPHA-BETA PRUNING #####################
