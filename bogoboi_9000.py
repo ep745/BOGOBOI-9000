@@ -1,5 +1,3 @@
-
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*
 
@@ -29,11 +27,16 @@ def compute_utility(board, color):
     else:
       return 0
 
+def isCorner(a,b):
+  if a == 0 or a == 7:
+    if b == 0 or b == 7:
+      return True
+  return False
 
 ############ MINIMAX ###############################
 
 def minimax_min_node(board, color, counter):
-  if counter>=11:
+  if counter>=12:
     return compute_utility(board,color)
   moves=get_possible_moves(board,color)
   worstMoveScore = math.inf
@@ -83,13 +86,17 @@ def select_move_minimax(board, color):
   bestMoveScore = -math.inf
   bestMove = moves[0]
   for i in moves:
-    newBoard = play_move(board, color, i[0], i[1])
-    score = minimax_min_node(newBoard,color,1)
-    if score>bestMoveScore:
-      bestMoveScore=score
-      bestMove=i
-  print("WAPOW!")
-  return bestMove
+    x=i[0]
+    y=i[1]
+    if isCorner(x,y)==True:
+      return i
+    else:
+     newBoard = play_move(board, color, i[0], i[1])
+     score = minimax_min_node(newBoard,color,1)
+     if score>bestMoveScore:
+        bestMoveScore=score
+        bestMove=i
+    return bestMove
     
 ############ ALPHA-BETA PRUNING #####################
 
